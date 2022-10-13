@@ -1,0 +1,68 @@
+﻿@model Samplecore.Core.Model.employee
+@{
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body style="background-color:cornflowerblue">
+    @using (Html.BeginForm("Update", "employee", FormMethod.Post))
+    {
+        @Html.HiddenFor(a => a.EmployeeId)
+        <label>First Name </label>
+        @Html.EditorFor(a => a.FirstName)
+        <br />
+        <br/>
+        <label>Middle Name &nbsp;</label>
+        @Html.EditorFor(a=>a.MiddleName)
+        <br />
+        <br/>
+        <label>Last Name &nbsp; </label>
+        @Html.EditorFor(a=>a.LastName)
+        <br />
+        <br/>
+
+        <label style=""tylealign:center>
+            Course &nbsp;
+            @Html.TextBoxFor(a=>a.Course)
+     
+        </label>
+        <br/>
+        <br/>
+
+
+        //#region GenderDetails
+
+        <p> Gender : </p> 
+        @Html.TextBoxFor(a => a.Gender)
+<br/>
+<br/>
+        //#endregion
+
+
+        <label>phone</label>
+        @Html.EditorFor(a=>a.Phone)
+        <br />
+        <br/>
+        <label>Address</label>
+        @Html.EditorFor(a=>a.Address)
+        <br />
+        <br/>
+        <label>Email</label>
+        @Html.EditorFor(a=>a.Email)
+        <br />
+        <br/>
+
+        <label>Password</label>
+        @Html.EditorFor(a=>a.Password)
+        <br />
+        <br/>
+        <label>Retype password</label>
+        @Html.EditorFor(a=>a.Repassword)
+        <br />
+        <br/>
+        <button>Edit</button>
+    }
+</body>
+</html>

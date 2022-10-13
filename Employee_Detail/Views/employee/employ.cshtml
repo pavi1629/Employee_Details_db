@@ -1,0 +1,180 @@
+﻿@model Samplecore.Core.Model.employee
+@{
+    Layout = null;
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
+    @using (Html.BeginForm("result", "employee", FormMethod.Post,new{@id="RestrictionForm"}))
+    {
+    <h1>Employee Details</h1>
+    <style>
+       
+        .error{
+            color:red;
+        }
+    </style>
+        <body style="background-color:cornflowerblue">
+      
+        <label>First Name &nbsp;</label>
+         @Html.TextBoxFor(a=>a.FirstName)
+        <br />
+        <br />
+
+        <label>Middle Name &emsp;</label>
+        @Html.TextBoxFor(a=>a.MiddleName)
+        <br />
+        <br/>
+
+        <label>Last Name &emsp;</label>
+        @Html.TextBoxFor(a=>a.LastName)
+        <br />
+        <br/>
+        
+        <label align="center">Course &emsp;
+        @Html.DropDownList("Course", new List<SelectListItem>
+        {
+        new SelectListItem{ Text="Select Course"},
+        new SelectListItem{ Text="ECE"},
+        new SelectListItem{ Text="IT"},
+        new SelectListItem{ Text="EEE"},
+        new SelectListItem{ Text="MCA"},
+        new SelectListItem{ Text="CSE"},
+        })
+        </label>
+        <br/>
+        <p>Gender : </p>
+       
+        <label>@Html.RadioButtonFor(a => a.Gender,"Male")Male</label><br/>
+        <label>@Html.RadioButtonFor(a => a.Gender,"Female")Female</label><br/>
+        <label>@Html.RadioButtonFor(a => a.Gender,"Others")Others</label><br/>
+<br/>
+        <label> phone </label>
+        @Html.TextBoxFor(a=>a.Phone)
+        <br />
+        <br />
+        <label>Address &emsp;</label>
+        @Html.TextAreaFor(a=>a.Address)
+        
+        <br />
+         <br/>  
+        <label>Email &emsp;</label>
+        @Html.TextBoxFor(a=>a.Email)
+        <br />
+        <br />
+        <label>Password &emsp;</label>
+        @Html.TextBoxFor(a=>a.Password)
+        <br />
+        <br />
+        <label>Retype password</label>
+        @Html.TextBoxFor(a=>a.Repassword)
+        <br />
+        <br />
+        <button type="submit">Save</button>
+        @Html.ActionLink("Redirect to Employeedetails","Read")
+
+    </body>
+      
+    }
+    
+<script>
+   
+    $().ready(function () {
+
+        $("#RestrictionForm").validate({
+            // in 'rules' user have to specify all the constraints for respective fields
+            rules: {
+
+                FirstName: {
+                    required: true,
+                    lettersonly: true,
+                },
+                MiddleName: {
+                    required: true,
+                    lettersonly: true,
+                },
+                LastName: {
+                    required: true,
+               },
+               Address: {
+                 required: true,
+               },
+               Phone: {
+
+                   required: true,
+                   number: true,
+                  maxlength: 10,
+               },
+
+                Password: {
+                   required: true,
+
+                  // RegExp="(?=^.{8,}$)(?=.*\d)(?=.*[!#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+               },
+               Repassword: {
+                   required: true,
+                   minlength: 5,
+                   equalTo: "#password" //for checking both passwords are same or not
+               },
+               Email: {
+                   required: true,
+                   email: true
+                },
+
+                Course:
+               {
+                    required: true,
+               },
+               Gender: {
+                    required: true,
+               }
+            },
+            // in 'messages' user have to specify message as per rules
+            messages: {               
+                FirstName: {
+                    required: " Please enter a FirstName",
+                    lettersonly: "Only alphabets are valid"
+                },
+                Address: {
+                   required: " Please enter a Address",
+                },
+                MiddleName: {
+                    required: " Please enter a LastName",
+                },
+               LastName: {
+                    required: " Please enter a LastName",
+                },
+               Email: {
+                   required: " Please enter a EmailId",
+               },
+               Phone: {
+                   
+                   required: " Please enter a Phone Number",
+                   maxlength: " Your number must not exceed 10 characters",
+
+              },
+              Password: {
+                   required: " Please enter a password",
+                  minlength: " Your password must be consist of at least 8 characters"
+              },
+              Repassword: {
+                   required: " Please enter a password",
+                   minlength: " Your password must be consist of at least 5 characters",
+                   equalTo: " Please enter the same password as above"
+                },
+
+              Course: {
+                    required: "kindly select a Course field"
+               },
+             Gender: {
+                   required: "Kindly select Gender",
+            }
+          },
+        });
+         });
+</script>
+  
+
+
+

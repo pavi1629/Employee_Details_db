@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Samplecore.Core.Model.employee>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<title>Employee Detail_Lists</title>
+    <p>@Html.ActionLink("Read","employee",new{id="#btn"})</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model =>model.MiddleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Course)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Repassword)
+            </th>
+        </tr>
+        @foreach (var employe_detail in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => employe_detail.EmployeeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => employe_detail.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => employe_detail.MiddleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => employe_detail.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => employe_detail.Course)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => employe_detail.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => employe_detail.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => employe_detail.Email)
+                </td>
+                 <td>
+                    @Html.DisplayFor(model => employe_detail.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => employe_detail.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(model =>employe_detail.Repassword)
+                </td>
+                <td>
+
+                    <button type="submit" class="btn btn-outline-success"> @Html.ActionLink("edit","Update", new { Employee_id=employe_detail.EmployeeId})  <i class="fa fa-mobile"></i></button>
+                 
+                    <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Are you sure want to delete this record?')">
+                        @Html.ActionLink("delete", "Delete", new { Employee_id = employe_detail.EmployeeId}) 
+                        <i class="fa fa-brands fa-google-wallet"></i></button>
+                
+               </td>
+            </tr>
+        }
+        </thead>
+</table>
+
